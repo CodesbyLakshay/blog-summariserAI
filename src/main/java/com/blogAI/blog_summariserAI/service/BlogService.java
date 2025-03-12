@@ -25,4 +25,16 @@ public class BlogService {
     public Blog getBlogById(Long id) {
         return blogRepository.findById(id).orElseThrow(() -> new RuntimeException("Blog not found"));
     }
+
+    public Blog updateBlog(Long id, Blog blogdetails) {
+        Blog blog = getBlogById(id);
+        blog.setTitle(blogdetails.getTitle());
+        blog.setAuthor(blogdetails.getAuthor());
+        blog.setContent(blogdetails.getContent());
+        return blogRepository.save(blog);
+    }
+
+    public void deleteBlogById(Long id) {
+        blogRepository.deleteById(id);
+    }
 }
