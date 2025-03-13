@@ -9,7 +9,7 @@ import org.springframework.web.bind.annotation.*;
 import java.util.Optional;
 
 @RestController
-@RequestMapping("/summary")
+@RequestMapping
 public class AIController {
 
     private final AIService aiService;
@@ -19,15 +19,11 @@ public class AIController {
         this.aiService = aiService;
         this.blogRepository = blogRepository;
     }
+    
 
-    @GetMapping
-    public String testAI(@RequestParam String prompt) {
-        return aiService.testAI(prompt);
+    @GetMapping("{id}")
+    public String getBlogSummary(@PathVariable Long id) {
+        Blog blog = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Blog not found"));
+        return aiService.getBlogSummary(blog.getContent());
     }
-
-  //  @GetMapping("/{id}")
-  //  public String getBlogSummary(@PathVariable Long id){
-   //     Blog blog = blogRepository.findById(id).orElseThrow(() -> new IllegalArgumentException("Blog not found"));
-    //    return aiService.getBlogSummary(blog.getContent());
-    }
-
+}
