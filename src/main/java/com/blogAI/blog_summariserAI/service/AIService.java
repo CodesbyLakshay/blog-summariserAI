@@ -14,15 +14,13 @@ public class AIService {
     }
 
 
-   // public String getBlogSummary(String content) {
-     //   if (content == null || content.isEmpty()) {
-     //       throw new IllegalArgumentException("Blog Content is Empty");
-       // }
-       // String prompt = "Summarize the following text:\n" + content;
-       // return openAiChatModel.call(prompt);
-   // }
-
-    public String testAI(String prompt) {
+   public String getBlogSummary(String content) {
+      if (content == null || content.isEmpty()) {
+           throw new IllegalArgumentException("Blog Content is Empty");
+        }
+        String prompt = "Summarize the following text:\n" + content;
         return openAiChatModel.call(prompt);
     }
+
+
 }
