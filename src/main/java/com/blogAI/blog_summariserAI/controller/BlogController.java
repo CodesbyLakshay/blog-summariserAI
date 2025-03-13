@@ -31,13 +31,13 @@ public class BlogController {
         return blogService.getBlogById(id);
     }
 
-    @PutMapping("/blog/update")
-    public Blog updateBlog(@RequestParam Long id , @RequestBody Blog blog){
+     @PutMapping("/blog/update/{id}")
+    public Blog updateBlog(@PathVariable Long id , @RequestBody Blog blog){
         return blogService.updateBlog(id,blog);
     }
 
     @DeleteMapping("/blog/delete/{id}")
-    public void deleteBlogById(@RequestParam Long id){
+    public void deleteBlogById(@PathVariable Long id){
        blogService.deleteBlogById(id);
     }
 
